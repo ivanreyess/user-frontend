@@ -3,9 +3,9 @@ import Swal from "sweetalert2";
 
 
 
-export const UserForm = ({handlerCloseForm, userSelected, handlerAddUser, inintialUserForm }) => {
+export const UserForm = ({userSelected, handlerAddUser, initialUserForm, handlerCloseForm }) => {
 
-    const [userForm, setUserForm] = useState(inintialUserForm);
+    const [userForm, setUserForm] = useState(initialUserForm);
 
     const { id, userName, password, email } = userForm;
 
@@ -39,13 +39,13 @@ export const UserForm = ({handlerCloseForm, userSelected, handlerAddUser, ininti
 
         // save user form
         handlerAddUser(userForm);
-        setUserForm(inintialUserForm);
+        setUserForm(initialUserForm);
 
     }
 
     const onCloseForm = () => {
-        handlerCloseForm;
-        setUserForm(inintialUserForm);
+        handlerCloseForm();
+        setUserForm(initialUserForm);
     }
     return (
         <div>
@@ -70,10 +70,10 @@ export const UserForm = ({handlerCloseForm, userSelected, handlerAddUser, ininti
                         id > 0 ? 'Editar' : 'Crear '
                     }
                 </button>
-                <button type="button" onClick={() => onCloseForm()}
+                {!handlerCloseForm || <button type="button" onClick={() => onCloseForm()}
                         className="btn btn-outline-danger mx-2 ">
                         Close
-                    </button>
+                    </button>}
             </form>
         </div>
     );

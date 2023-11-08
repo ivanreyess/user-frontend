@@ -1,22 +1,21 @@
 import { UserForm } from "../components/UserForm";
+import { UserModalForm } from "../components/UserModalForm";
 import { UsersList } from "../components/UsersList";
-import { useUsers } from "../hooks/useUsers";
 
 
-export const UsersPage = () => {
-
-    const {
+export const UsersPage = ({ 
         users,
         userSelected,
-        inintialUserForm,
+        initialUserForm,
         visibleForm,
-
         handlerAddUser,
         handlerRemoveUser,
         handlerUserSelectedForm,
-        hanlderOpenForm,
-        handlerCloseForm
-    } = useUsers();
+        handlerOpenForm,
+        handlerCloseForm,
+    }) => {
+
+
 
     return (
         <>
@@ -24,10 +23,12 @@ export const UsersPage = () => {
             {/* {!visibleForm ||
             <UserModalForm
             userSelected={userSelected}
-            inintialUserForm={inintialUserForm}
+            initialUserForm={initialUserForm}
             handlerAddUser={handlerAddUser}
             handlerCloseForm={handlerCloseForm}
-        /> */}
+
+        />
+    } */}
 
             {!visibleForm ||
                 <div className="abrir-modal animacion fadeIn">
@@ -42,10 +43,10 @@ export const UsersPage = () => {
                                 <div className="modal-body">
 
                                     <UserForm
-                                        handlerCloseForm={handlerCloseForm}
-                                        inintialUserForm={inintialUserForm}
-                                        userSelected={userSelected}
-                                        handlerAddUser={handlerAddUser} />
+                                         initialUserForm={initialUserForm}
+                                         userSelected={userSelected}
+                                         handlerAddUser={handlerAddUser}
+                                         handlerCloseForm={handlerCloseForm} />
                                 </div>
                             </div>
                         </div>
@@ -58,7 +59,7 @@ export const UsersPage = () => {
                 <div className="row">
                     <div className="col">
                         {visibleForm ||
-                            <button onClick={hanlderOpenForm}
+                            <button onClick={handlerOpenForm}
                                 className="btn btn-primary my-2 ">
                                 Add user
                             </button>

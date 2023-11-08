@@ -1,6 +1,6 @@
 import {UserForm} from "./UserForm";
 
-export const UserModalForm = (userSelected, inintialUserForm, handlerAddUser, handlerCloseForm) => {
+export const UserModalForm = ({userSelected, initialUserForm, handlerAddUser, handlerCloseForm}) => {
     return (
         <div className="abrir-modal animacion fadeIn">
         <div className="modal" style={ {display:"block"}} tabIndex="-1">
@@ -14,10 +14,10 @@ export const UserModalForm = (userSelected, inintialUserForm, handlerAddUser, ha
                     <div className="modal-body">
 
                         <UserForm
-                                                       handlerCloseForm={handlerCloseForm}
-                           inintialUserForm={inintialUserForm}
-                            userSelected={userSelected}
-                            handlerAddUser={handlerAddUser}
+                         initialUserForm={initialUserForm}
+                         userSelected={userSelected}
+                         handlerAddUser={handlerAddUser}
+                         handlerCloseForm={handlerCloseForm}
                            
                             />
                     </div>
