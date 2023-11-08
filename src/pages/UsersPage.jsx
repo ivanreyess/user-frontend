@@ -1,21 +1,21 @@
+import { useContext } from "react";
 import { UserForm } from "../components/UserForm";
 import { UserModalForm } from "../components/UserModalForm";
 import { UsersList } from "../components/UsersList";
+import { UserContext } from "../context/UserContext";
 
 
-export const UsersPage = ({ 
-        users,
-        userSelected,
-        initialUserForm,
-        visibleForm,
-        handlerAddUser,
-        handlerRemoveUser,
-        handlerUserSelectedForm,
-        handlerOpenForm,
-        handlerCloseForm,
-    }) => {
+export const UsersPage = () => { 
 
-
+const {
+    users,
+    userSelected,
+    visibleForm,
+    handlerRemoveUser,
+    handlerUserSelectedForm,
+    handlerOpenForm,
+    handlerCloseForm,
+} = useContext(UserContext);
 
     return (
         <>
@@ -23,7 +23,7 @@ export const UsersPage = ({
             {/* {!visibleForm ||
             <UserModalForm
             userSelected={userSelected}
-            initialUserForm={initialUserForm}
+            initialUserForm={inintialUserForm}
             handlerAddUser={handlerAddUser}
             handlerCloseForm={handlerCloseForm}
 
@@ -43,9 +43,7 @@ export const UsersPage = ({
                                 <div className="modal-body">
 
                                     <UserForm
-                                         initialUserForm={initialUserForm}
                                          userSelected={userSelected}
-                                         handlerAddUser={handlerAddUser}
                                          handlerCloseForm={handlerCloseForm} />
                                 </div>
                             </div>
@@ -67,8 +65,7 @@ export const UsersPage = ({
 
                         {users.length === 0
                             ? <div className="alert alert-warning">No hay usuarios en el sistema</div>
-                            :
-                            <UsersList handlerUserSelectedForm={handlerUserSelectedForm} users={users} handlerRemoveUser={handlerRemoveUser} />
+                            : <UsersList />
                         }
 
                     </div>
