@@ -1,23 +1,24 @@
-import { LoginPage } from "./auth/LoginPage";
-import { loginReducer } from "./auth/reducers/loginReducer";
-import { UsersPage } from "./pages/UsersPage";
-import { usersReducer } from "./reducers/usersReducer";
-
-
-const initialLogin = {
-    iAuth: false,
-    user: undefined
-}
+import { useReducer } from 'react';
+import { useAuth } from './auth/hooks/useAuth';
+import { LoginPage } from './auth/pages/LoginPage';
+import { Navbar } from './components/layout/Navbar';
+import { UsersPage } from './pages/UsersPage';
 
 export const UsersApp = () => {
 
-    const [login, dispatch] = usersReducer(loginReducer, initialLogin);
-
+    const { login, handlerLogin, handlerLogout } = useAuth();
     return (
         <>
-        <LoginPage/>
-        {/* <UsersPage/> */}
+            {
+                login.isAuth
+                    ? (
+                        <>
+                            <Navbar login={ login } handlerLogout={handlerLogout} />
+                            <UsersPage />
+                        </>
+                    )
+                    : <LoginPage handlerLogin={handlerLogin} />
+            }
         </>
     );
-
 }
